@@ -7469,3 +7469,7 @@ a.text-dark:focus, a.text-dark:hover {
 .invisible {
   visibility: hidden !important;
 }
+
+body {
+  padding-top: 3.5rem;
+}
