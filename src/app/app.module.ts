@@ -4,12 +4,13 @@ import { RouterModule }   from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
-import { UsersComponent } from './users.component';
+import { UsersComponent, UserCreateComponent } from './user/user.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    UsersComponent
+    UsersComponent,
+    UserCreateComponent
   ],
   imports: [
     NgbModule.forRoot(),
@@ -20,6 +21,7 @@ import { UsersComponent } from './users.component';
     }])
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [UserCreateComponent]
 })
 export class AppModule { }
