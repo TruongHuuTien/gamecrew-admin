@@ -3,16 +3,18 @@ import { User } from './user';
 
 const MOCK_USERS:User[] = [{
   id: 0,
-  email: "toto",
-  password: "toto",
+  email: "admin@gamecrew.com",
+  password: "admin",
   isAdmin: false
 }];
+
+let users = MOCK_USERS;
 
 
 @Injectable()
 export class UserService {
   getUsers(): User[] {
-    return MOCK_USERS;
+    return users;
   }
   newUser(): User {
     return {
@@ -20,5 +22,17 @@ export class UserService {
       password: "",
       isAdmin: false
     };
+  }
+  createUser(newUser: User): User {
+    let user = {
+      id: users.length,
+      email: newUser.email,
+      password: newUser.password,
+      isAdmin: newUser.isAdmin
+    };
+    
+    users.push(user);
+
+    return user;
   }
 }

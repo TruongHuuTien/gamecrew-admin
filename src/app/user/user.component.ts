@@ -27,14 +27,17 @@ export class UsersComponent {
   providers: [UserService]
 })
 export class UserCreateComponent {
-  private user;
+  public user;
+  public userService: UserService = new UserService;
+  public activeModal: NgbActiveModal;
 
-  constructor (private userService: UserService, public activeModal: NgbActiveModal) {
-    this.user = userService.newUser();
+  constructor (public ngbActiveModal: NgbActiveModal) {
+    this.activeModal = ngbActiveModal;
+    this.user = this.userService.newUser();
   }
 
   createUserSubmit() {
-    console.log(this.user);
-
+    this.userService.createUser(this.user);
+    this.activeModal.close('Submit')
   }
 }
