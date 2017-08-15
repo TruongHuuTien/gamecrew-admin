@@ -1,27 +1,19 @@
 import { Component, NgModule, Input } from '@angular/core';
 import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-
-export class User {
-  id?: number;
-  email: string;
-  isAdmin: boolean;
-}
-
-const USERS:User[] = [{
-  id: 0,
-  email: "toto",
-  isAdmin: false
-}];
+import { UserService } from './user.service';
 
 
 @Component({
   selector: 'UsersComponent',
   templateUrl: './users.component.html',
+  providers: [UserService]
 })
 export class UsersComponent {
-  public users = USERS;
+  public users;
 
-  constructor(private modalService: NgbModal) {}
+  constructor(private userService: UserService, private modalService: NgbModal) {
+    this.users = userService.getUsers();
+  }
 
   openCreateUserModal() {
     const modalRef = this.modalService.open(UserCreateComponent);
@@ -32,16 +24,17 @@ export class UsersComponent {
 @Component({
   selector: 'UsersComponent',
   templateUrl: './user.create.component.html',
+  providers: [UserService]
 })
 export class UserCreateComponent {
-  private user:User = {
-    email: "",
-    isAdmin: false,
-  };
+  private user;
 
-  constructor (public activeModal: NgbActiveModal) {}
+  constructor (private userService: UserService, public activeModal: NgbActiveModal) {
+    this.user = userService.newUser();
+  }
 
   createUserSubmit() {
     console.log(this.user);
+
   }
 }
