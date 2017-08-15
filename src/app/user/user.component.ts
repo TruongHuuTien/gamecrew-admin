@@ -1,9 +1,16 @@
-import { Component, NgModule } from '@angular/core';
+import { Component, NgModule, Input } from '@angular/core';
 import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
-const USERS = [{
-  id: 1,
-  name: "toto"
+export class User {
+  id?: number;
+  email: string;
+  isAdmin: boolean;
+}
+
+const USERS:User[] = [{
+  id: 0,
+  email: "toto",
+  isAdmin: false
 }];
 
 
@@ -27,5 +34,14 @@ export class UsersComponent {
   templateUrl: './user.create.component.html',
 })
 export class UserCreateComponent {
+  private user:User = {
+    email: "",
+    isAdmin: false,
+  };
+
   constructor (public activeModal: NgbActiveModal) {}
+
+  createUserSubmit() {
+    console.log(this.user);
+  }
 }

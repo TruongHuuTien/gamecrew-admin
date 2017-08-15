@@ -8,15 +8,15 @@
   <form>
     <div class="form-group input-group">
       <label class="input-group-addon w-25" for="user-create-email">Email</label>
-      <input id="user-create-email" type="text" class="form-control" placeholder="email@example.com" aria-label="Email">
+      <input id="user-create-email" type="text" class="form-control" [(ngModel)]="user.email" name="email" placeholder="email@example.com" aria-label="Email">
     </div>
     <div class="form-group input-group">
       <label class="input-group-addon w-25" for="user-create-password">Password</label>
-      <input id="user-create-password" type="password" class="form-control" placeholder="Password" aria-label="Password">
+      <input id="user-create-password" type="password" class="form-control" [(ngModel)]="user.password" name="password" placeholder="Password" aria-label="Password">
     </div>
     <div class="form-check">
       <label class="form-check-label">
-        <input class="form-check-input" type="checkbox" value="">
+        <input class="form-check-input" [(ngModel)]="user.isAdmin" name="isAdmin" type="checkbox" value="">
         Admin
       </label>
     </div>
@@ -24,5 +24,5 @@
 </div>
 <div class="modal-footer">
   <button type="button" class="btn btn-outline-secondary" (click)="activeModal.close('Close click')">Cancel</button>
-  <button type="button" class="btn btn-outline-primary">Submit</button>
+  <button type="button" class="btn btn-outline-primary" (click)="createUserSubmit()">Submit</button>
 </div>
